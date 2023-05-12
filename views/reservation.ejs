@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./samples/head'); %>
+        <title>Бронирование</title>
+</head>
+
+<body>
+    <header>
+        <%- include('./samples/header-x'); %>
+    </header>
+    <h1 class="text-center">Бронирование</h1>
+    <div class="container">
+        <form id="reservation-form " class="row reservation_form" method="POST" action="/api/submit-reservation">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+
+            <div class="col">
+
+                <label for="email">Email:</label>
+                <div class="form-floating">
+                    <input class="form-control" type="email" id="email" name="email" required>
+                </div>
+
+                <label for="phone">Телефон:</label>
+                <div class="form-floating">
+                    <input class="form-control" type="tel" id="phone" name="phone" required>
+                </div>
+                <label for="package">Выберите тип путевки</label>
+                <div class="form-floating">
+                    <select id="package" class="form-select" name="package" required>
+                        <% for (let travel_type of travel ) {%>
+                            <option value=<%=travel_type.id%>><%=travel_type.name%>
+                            </option>
+                            <% } %>
+                    </select>
+
+                </div>
+
+                <label for="room_category">Выберите категорию номера</label>
+                <select id="room_category" class="form-select" name="room_category" style="width: 88%;" required>
+                    <% for (let room of rooms ) {%>
+                        <option value=<%=room.id%>><%=room.name%>
+                        </option>
+                        <% } %>
+                </select>
+
+                <label for="adults">Количество взрослых:</label>
+                <div class="form-floating">
+                    <input class="form-control" type="number" id="adults" name="adults" min="1" max="4" required>
+                </div>
+            </div>
+            <div class="col">
+
+                <label for="children">Количество детей:</label>
+                <div class="form-floating">
+                    <input class="form-control" type="number" id="children" name="children" min="0" max="3" required>
+                </div>
+                <label for="check-in-date">Дата заезда:</label>
+                <div class="form-floating" ">
+                <input class=" form-control" type="date" id="check_in_date" name="check_in_date" required>
+                </div>
+                <label>Дата выезда:</label>
+                <div class="form-floating">
+                    <input class="form-control" type="date" id="check_out_date" name="check_out_date" required>
+                </div>
+
+                    <div class="form-floating" style="left: 190px;margin-top: 100px;">
+                        <input class="btn btn-success" type="submit" value="Забронировать">
+                    </div>
+            </div>
+
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jQuery/3.3.1/jQuery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#reservation-form').submit(function (event) {
+                // Отменяем стандартную отправку формы
+                event.preventDefault();
+
+                // Получаем значения полей формы
+                var surname = $('#surname').val();
+                var name = $('#name').val();
+                var patronymic = $('#patronymic').val();
+                var email = $('#email').val();
+                var phone = $('#phone').val();
+                var TravelId = $('#package').val();
+                var RoomId = $('#room_category').val();
+                var adults = $('#adults').val();
+                var children = $('#children').val();
+                var check_in_date = $('#check_in_date').val();
+                var check_out_date = $('#check_out_date').val();
+
+                // Отправляем данные на сервер
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/submit-reservation',
+                    data: { surname, name, patronymic, email, phone, TravelId, RoomId, adults, children, check_in_date, check_out_date },
+                    success: function (data) {
+                        // Обработка успешной отправки данных на сервер
+                    },
+                    error: function (xhr, status, error) {
+                        // Обработка ошибки отправки данных на сервер
+                    }
+                });
+            });
+        });
+
+    </script>
+    <footer>
+        <%- include('./samples/footer'); %>
+    </footer>
+</body>
+
+</html>

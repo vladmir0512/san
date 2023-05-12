@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('./samples/head'); %>
+</head>
+
+<body>
+  <header>
+    <%- include('./samples/header-x'); %>
+  </header>
+  <h1 class="text-center">Заказ медицинских услуг</h1>
+  <div class="container">
+    <form id="services-form" class="row" method="POST" action="/api/submit-services">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="col">
+        <label for="surname" class="placeholder col-6">Фамилия:</label>
+        <div class="form-floating">
+          <input class="form-control" type="text" id="surname" name="surname" required>
+        </div>
+        <label for="name">Имя:</label>
+        <div class="form-floating">
+          <input class="form-control" type="text" id="name" name="name" required>
+        </div>
+        <label for="patronymic">Отчество:</label>
+
+        <div class="form-floating">
+          <input class="form-control" type="text" id="patronymic" name="patronymic" required>
+        </div>
+    
+
+        <div class="mb-3 med_email">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control " id="email" name="email" placeholder="Введите ваш email">
+        </div>
+
+        <div class="mb-3 med_email">
+          <label for="services" class="form-label">Типы процедуры</label>
+          <select class="form-select" id="services" name="services">
+            <% for (let type_service of type_services ) {%>
+              <option value=<%=type_service.id%>><%=type_service.name%>
+              </option>
+              <% } %>
+                <!-- Добавьте дополнительные опции, если нужно -->
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <label for="number_services ">Количество процедур:</label>
+        <div class="form-floating ">
+          <input class="form-control" type="number" id="number_services" name="number_services" min="1" max="10"
+            required>
+        </div>
+
+
+
+        <label>Дата проведения:</label>
+        <div class="form-floating">
+          <input class="form-control" type="date" id="check_out_date" name="date" required>
+        </div>
+
+
+        <div class="mb-3 ">
+          <label for="phone" class="form-label">Номер телефона</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Введите ваш номер телефона">
+        </div>
+
+
+        <button type="submit" class="btn btn-success">Оформиить</button>
+      </div>
+    </form>
+  </div>
+  <footer>
+    <%- include('./samples/footer'); %>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+  <script>
+    $(document).ready(function () {
+
+    });
+
+  </script>
+</body>
+
+</html>

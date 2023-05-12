@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('./samples/head'); %>  
+    <title>Наши врачи</title>
+
+</head>
+<body>
+    <header>
+        <%- include('./samples/header-x'); %>
+    </header>
+    <h1><i>Наши врачи</i></h1>
+    <div class="container">
+        <div class="row">
+            <% for (let doctor of doctors ) {%>
+            <div class="card col-3 m-3" style="width: 18rem;">
+                    <div class="card-body">
+                                <img src="images/1fff-<%=doctor.id%>.jpg " class="card-img-top" alt="...">
+                                <p class="card-text">ФИО: <b><%=doctor.name%></b></p>
+                                <p class="card-text">Должность: <b><%=doctor.position%></b></p>
+                                <p class="card-text">Категория: <b><%=doctor.category%></b></p>
+                    </div>
+                       
+
+               
+        </div>
+        <% } %>
+    </div>
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <%- include('./samples/footer'); %>
+    </footer>
+</body>
+</html>

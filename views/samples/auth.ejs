@@ -1,0 +1,32 @@
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase.js"></script>
+<script>
+    const firebaseConfig = {
+            apiKey: "AIzaSyD58FGDtuo2rSK33jsr5GWcXo61wwbmlhk",
+            authDomain: "nodejs-san.firebaseapp.com",
+            projectId: "nodejs-san",
+            storageBucket: "nodejs-san.appspot.com",
+            messagingSenderId: "834770840669",
+            appId: "1:834770840669:web:029cec88de8a3f28ecb1b4"
+        };
+       
+    firebase.initializeApp(firebaseConfig); 
+</script>
+
+<div id="profile" class="profile position-absolute bottom-0 end-0">
+    <img id="google-pic" class="google-pic" src=""/>
+    <button 
+        class="btn btn-success google-signin"
+        id="google-signin" 
+        onclick={signInWithGoogle()}
+        style="display: none; visibility: hidden;">Войти</button>
+        
+    <a href="profile" class="google_email"><text id="google_email" ></text></a>
+    <button
+        class="btn btn-success google-signout"
+        id="google-signout"
+        onclick="{signOut()}"
+        style="display: none; visibility: hidden;">Выйти</button>
+    
+</div>
+
+<script src="js/firebaseAuth.js"></script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('./samples/head'); %>  
+</head>
+<body>
+    <header>
+        <%- include('./samples/header-x'); %>
+    </header>       
+    <h1><i>Категория номеров</i></h1>
+
+    <div class="container-xm">
+        <div class="row">
+            <% for (let room of rooms ) {%>
+                <div class="card col-3 m-3" style="width: 25rem;">
+                    <div class="card-body">
+                        <img src="images/room-<%=room.id%>.jpeg" class="card-img-top" alt="...">
+                        <h5 class="card-title"><%=room.name%></h5>
+                        <p class="card-text"><%=room.description%></p>
+                        <p class="card-text"><%=room.cost%></p>
+                        <p class="card-text"><%=room.size%></p>
+
+                    </div>
+                </div>
+            <% } %>
+     
+               
+        </div>
+            
+    </div>
+ 
+    <footer>
+        <%- include('./samples/footer'); %>
+    </footer>
+</body>
+</html>

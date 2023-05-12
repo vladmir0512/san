@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('./samples/head'); %>
+    <title>Санаторий "Мечта"</title>
+
+</head>
+
+<body>
+  <div class="container-xm nav-cont">
+    <header>
+      <%- include('./samples/header-x'); %>
+    </header>
+  </div>
+  <!-- Карусель -->
+  <div id="carouselExampleControls" class="carousel slide car" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="images/cr1.jpg" class="d-block w-100 imgcar" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="images/cr2.jpg" class="d-block w-100 imgcar" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="images/cr33.jpg" class="d-block w-100 imgcar" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!--/Карусель -->
+  <!-- Карточки -->
+  <div class="row">
+    <div class="card text-center ">
+      <div class="card-body ">
+        <h5 class="card-title">Лечебное питание</h5>
+        <p class="card-text"> Можете ознакомиться с различными видами диет, которые есть в нашем меню.</p>
+        <a href="food" class="btn btn-outline-success ">Узнать больше</a>
+      </div>
+      <div class="card text1-center card_med">
+        <div class="card-body">
+          <h5 class="card-title">Медицинские услуги</h5>
+          <p class="card-text">Большое количество разнообразных полезных медицинских процедур. </p>
+          <a href="medicine" class="btn btn-outline-success btn-med-1">Узнать больше</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/Карточки -->
+
+  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <%- include('./samples/footer'); %>
+  </footer>
+
+</body>
+
+</html>

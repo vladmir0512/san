@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">    
+            </li>
+            <li class="nav-item">
+
+                <a id="btn-about " class="nav-link active" aria-current="page" href="/about">О нас </a>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Проживание
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a id="btn-rooms" class="dropdown-item" href="rooms">Номера</a></li>
+                    <li><a id="btn-reservation-2" class="dropdown-item" href="reservation">Бронирование</a></li>
+                </ul>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Лечение
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a id="btn-travel-types" class="dropdown-item" href="food">Лечебное питание</a></li>
+                    <li><a id="btn-doctors" class="dropdown-item" href="doctors">Врачи</a></li>
+                    <li><a id="btn-medicial" class="dropdown-item btn-med-2" href="medicine">Медицинские услуги</a></li>
+                </ul>
+            <li class="nav-item dropdown">
+                <a id="btn-travel" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Путевка
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a id="btn-travel-types" class="dropdown-item" href="travel">Типы путевок</a></li>
+                </ul>
+            <li class="nav-item dropdown">
+
+                <div class="d-flex">
+                    <a id="btn-reservation-1" class="btn btn-success reservation" href="reservation"
+                        role="button ">Забронировать</a>
+                </div>
+            </li>
+            <li class="navbar-item">
+                <%- include('auth'); %>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script src="js/header.js"></script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./samples/head'); %>
+        <title>О нас</title>
+</head>
+
+<body>
+    <header>
+        <%- include('./samples/header-x'); %>
+    </header>
+    <h1><i>О нас</i></h1>
+    <div class="container">
+
+
+        <h3 class="text-center mt-5"><b>Санаторий "Мечта"</b><br> Здоровый отдых и лечение в центре курортного поселка
+            Лазаревское вдали от
+            городского шума.
+            Три подогреваемых бассейна с морской водой.
+            Субтропический парк с экзотическими растениями.</h3>
+
+        <h3 class="text-center mt-5">Современная многопрофильная здравница расположена на территории Сочинского национального парка в субтропической зоне. Достойный отдых в любое время года нашим отдыхающим обеспечивают профессиональная команда специалистов курортной медицины, большой парк, бассейны с подогреваемой морской водой, спортивные площадки и залы, разнообразные досуговые мероприятия.</h3>
+        <div class="row">
+            <div class="col">
+                <div class="map">
+
+                    <div class="card ">
+                        <div class="card-body">
+
+                            <h5 class="card-title text-center">Как до нас добраться</h5>
+                            <div id="#map" class="mapp">
+                                <script type="text/javascript" charset="utf-8" async
+                                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aa646a10c4b9a11ae881765329447f5dc3ce36b0878ad32d122deb0cbc30426b1&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <h3 class="text-center san_address">Кольцевая ул., 10, Сочи, Краснодарский край, 354200 </h3>
+
+            </div>
+        </div>
+
+        <footer>
+            <%- include('./samples/footer'); %>
+        </footer>
+
+</body>
+
+</html>

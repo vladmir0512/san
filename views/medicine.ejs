@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./samples/head'); %>
+</head>
+
+<body>
+    <header>
+        <%- include('./samples/header-x'); %>
+    </header>
+    <h1 class="text-center"> Медицинские услуги</h1>
+    <div class="card">
+        <% for (let type_service of type_services ) {%>
+            <% for (let doctor of doctors ) {%>
+                <% if(doctor.id==type_service.DoctorId){ %>
+                    <div class="card-body">
+
+                        <h5 class="card-title">Мед услуга #<%=type_service.id%>
+                        </h5>
+                        <p class="card-text">Тип комнаты: <b>
+                                <%=type_service.name%>
+                            </b></p>
+                        <p class="card-text">Стоимость: <b>
+                                <%=type_service.cost%>р.
+                            </b></p>
+                        <p class="card-text">Доктор: <b>
+                                <%=doctor.name%>
+                            </b></p>
+                        <a id="btn-med-vaucher1" class="btn btn-primary" href="/med_vaucher" role="button">Оформить
+                            услугу</a>
+                        <hr>
+
+                    </div>
+                    <% } %>
+
+                        <% } %>
+                            <% } %>
+
+    </div>
+
+    <footer>
+        <%- include('./samples/footer'); %>
+    </footer>
+</body>
+
+</html>

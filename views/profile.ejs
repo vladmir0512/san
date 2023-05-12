@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./samples/head'); %>
+    <title>Личный кабинет</title>
+</head>
+
+<body>
+    <header>
+        <%- include('./samples/header-x'); %>
+    </header>
+    <h1><i>Личный кабинет</i></h1>
+    <div id="please-login">
+        <br>
+        <h3>Чтобы получить доступ к личному кабинету войдите в аккаунт.</h3>
+    </div>
+    <div id="sancard-reservation-medicine" class="container">
+        <div class="row">
+            <div class="card col-3 m-3" style="width: 60rem;">
+                <div class="card-body">
+                    <form id="sancard-form" method="POST" action="/api/submit-sancard">
+                        <h3>Санаторно-курортная карта</h3>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                        <label for="name">ФИО:</label>
+                        <input type="text" id="name" name="name" value=<%-JSON.stringify(clientt.name)%>><br>
+
+                        <label for="sanitary-card">Номер санатарной карты:</label>
+                        <input type="text" id="sanitary_card" name="sanitary_card"
+                            value=<%-JSON.stringify(sancard.number)%>><br>
+
+                        <label for="gender">Пол:</label>
+                        <select id="gender" name="gender">
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select><br>
+
+                        <label for="procedures">Назначенные процедуры:</label>
+                        <input type="text" id="procedures" name="procedures"
+                            value=<%-JSON.stringify(sancard.procedures)%>><br>
+
+
+                        <label for="diagnosis">Диагноз:</label>
+                        <input type="text" id="diagnosis" name="diagnosis"
+                            value=<%-JSON.stringify(sancard.diagnosis)%>><br>
+
+                        <label for="address">Адрес:</label>
+                        <textarea id="address" name="address"><%-sancard.address%></textarea><br>
+
+                        <input id="send-sancard" type="submit" value="Отправить">
+                    </form>
+                </div>
+            </div>
+
+
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script>
+                var sex = <% -JSON.stringify(sancard.sex) %>;
+
+                if (sex) {
+                    sex = "female"
+                } else if (!sex) {
+                    sex = "male"
+                }
+                document.getElementById("gender").value = sex
+            </script>
+            <script>
+                //для бронирования
+                function payReservation(id) {
+                    alert(`Благодарим за покупку!`)
+                    axios.post('/api/pay-reservation', {
+                        _csrf: "<%= csrfToken %>",
+                        id: id
+                    })
+                        .then(response => {
+                        })
+                        .catch(error => {
+                        })
+
+
+                    //сделать post запрос к серверу, передать id
+                    //кнопка должна удалить из бд запись о бронировании
+                    //отослать на почту, указанную в записи с бронированием, письмо с чеком
+                    //показать alert("Благодарим за покупку!") и обновить страницу
+                };
+
+                function payService(id) {
+                    alert(`Благодарим за покупку!`)
+
+                    axios.post('/api/pay-service', {
+                        _csrf: "<%= csrfToken %>",
+                        id: id
+                    })
+                        .then(response => {
+                        })
+                        .catch(error => {
+                        })
+                    //сделать универсальным, чтобы не для первой работало только, а для 100000 тоже
+                    //кнопка должна удалить из бд запись о бронировании
+                    //отослать на почту, указанную в записи с бронированием, письмо с чеком
+                    //показать alert("Благодарим за покупку!") и обновить страницу
+                };
+
+            </script>
+            <div class="card col-3 m-3" style="width: 29rem; ">
+                <div class="card-body">
+                    <h3>Бронирование</h3>
+                    <% for (let reservation of reservations ) {%>
+                        <div class="card-body">
+                            <h5 class="card-title">#<%=reservation.id%>
+                            </h5>
+                            <% for (let room of rooms) {%>
+                                <% if(room.id==reservation.RoomId){ %>
+                                    <p class="card-text">Тип комнаты: <b>
+                                            <%=room.name%>
+                                        </b></p>
+                                    <% } %>
+                                        <% } %>
+                                            <% for (let travel of travels) {%>
+                                                <% if(travel.id==reservation.TravelId){ %>
+                                                    <p class="card-text">Тип путевки: <b>
+                                                            <%=travel.name%>
+                                                        </b></p>
+                                                    <% } %>
+                                                        <% } %>
+                                                            <p class="card-text">Количество взрослых: <b>
+                                                                    <%=reservation.number_adult%>
+                                                                </b></p>
+                                                            <p class="card-text">Количество детей: <b>
+                                                                    <%=reservation.number_children%>
+                                                                </b></p>
+                                                            <p class="card-text">Дата начала: <b>
+                                                                    <%=reservation.date_arrival%>
+                                                                </b></p>
+                                                            <p class="card-text">Дата конца: <b>
+                                                                    <%=reservation.date_departure%>
+                                                                </b></p>
+                                                            <p class="card-text">Стоимость: <b>
+                                                                    <%=reservation.full_cost%>р.
+                                                                </b></p>
+
+                                                            <button id="pay_reservation_<%=reservation.id%>"
+                                                                name="pay_reservation_<%=reservation.id%>"
+                                                                class="btn btn-secondary"
+                                                                onclick="payReservation(id)">Оплатить</button>
+                                                            <hr>
+                        </div>
+                        <% } %>
+                            <div id="no-info-reservation">
+                                <text class="text-center">Нет информации.</text>
+                                <input name="fake-pay" type="submit" value="Оплатить" disabled>
+                            </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="card col-3 m-3" style="width: 29rem;">
+                <div class="card-body">
+                    <h3>Медицинские услуги</h3>
+                    <% for (let service of services ) {%>
+                        <div class="card-body">
+                            <h5 class="card-title">#<%=service.id%>
+                            </h5>
+                            <% for (let type_service of type_services) {%>
+                                <% if(type_service.id==service.TypeServiceId){ %>
+                                    <p class="card-text">Тип услуги: <b>
+                                            <%=type_service.name%>
+                                        </b></p>
+                                    <% } %>
+                                        <% } %>
+                                            <p class="card-text">Стоимость: <b>
+                                                    <%=service.full_cost%>р.
+                                                </b></p>
+
+                                            <button id="pay_service_<%=service.id%>" class="btn btn-secondary"
+                                                onclick="payService(id)">Оплатить</button>
+                                            <hr>
+                        </div>
+
+
+                        <% } %>
+                            <div id="no-info-services">
+                                <text class="text-center">Нет информации.</text>
+                                <input type="submit" value="Оплатить" disabled>
+                            </div>
+                </div>
+                </form>
+            </div>
+
+        </div>
+
+        <script>
+            var a = <% -JSON.stringify(reservations) %>;
+            var b = <% -JSON.stringify(services) %>;
+
+            var noInfoRes = document.getElementById('no-info-reservation');
+            var noInfoServ = document.getElementById('no-info-services');
+
+
+            function isEmpty(obj) {
+                return Object.entries(obj).length === 0;
+            }
+
+            function setVisible(obj, condition) {
+                if (condition) {
+                    obj.setAttribute('style', 'display: inline-block; visibility: visible');
+                }
+                else {
+                    obj.setAttribute('style', 'display: none; visibility: hidden');
+                }
+            }
+
+            setVisible(noInfoRes, isEmpty(a));
+            setVisible(noInfoServ, isEmpty(b));
+
+        </script>
+    </div>
+    </div>
+    <script>
+
+    </script>
+    <script src="js/profile.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            e.preventDefault(); // avoid to execute the actual submit of the form
+            $('#sancard-form').submit(function (event) {
+                // Отменяем стандартную отправку формы
+
+                // Получаем значения полей формы
+                var name = $('#name').val();
+                var sanitary_card = $('#sanitary-card').val();
+                var gender = $('#gender').val();
+                var procedures = $('#procedures').val();
+                var diagnosis = $('#diagnosis').val();
+                var address = $('#address').val();
+                // Отправляем данные на сервер
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/submit-sancard',
+                    data: { name: name, sanitary_card: sanitary_card, gender: gender, procedures: procedures, diagnosis: diagnosis, address: address },
+                    success: function (data) {
+                        concole.log(data)
+                    },
+                    error: function (xhr, status, error) {
+                        // Обработка ошибки отправки данных на сервер
+                    }
+                });
+            });
+
+
+
+        })
+    </script>
+
+
+    <footer>
+        <%- include('./samples/footer'); %>
+    </footer>
+
+</body>
+
+</html>

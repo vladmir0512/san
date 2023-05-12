@@ -1,0 +1,97 @@
+/* Общие стили для всех страниц */
+body {
+  background-image: linear-gradient(rgb(185, 255, 138), rgb(196, 255, 156));
+}
+
+header {
+  background: linear-gradient(#24b873, rgb(158, 255, 93));
+  right: 0;
+  top: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  font-size: 19px;
+  font-weight: bold;
+  color: #fafaff;
+  z-index: 100;
+
+}
+.google-pic {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.google_email {
+  text-decoration: none;
+  color: black;
+}
+.footer {
+  background-color: #24b873bb;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 19px;
+  font-weight: bold;
+  color: #fafaff;
+}
+
+.footer__brand{
+  text-decoration: none;
+  color: #24b873;
+}
+a.reservation {
+  margin-top: 3px;
+}
+
+.profile {
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+
+/* Стили главной страницы*/
+/* Параметры карусели*/
+.car {
+  height: 400px;
+}
+
+.imgcar {
+  max-height: 400px;
+}
+
+/* Стили карточек */ 
+.card_food{
+  color: #24b873;
+  height: 100px;
+}
+
+
+
+/* Стили для бронирования */
+
+.form-floating{
+  width: 30rem;
+  max-height: 55px;
+  
+}
+.col {
+  margin-bottom: 100px;
+}
+/* Стили для мед.услуг */
+
+.med_email{
+  width: 88%;
+}
+/* Стили для страницы "О нас" */
+.map{
+  width:  600px;
+  margin-top: 100px;
+}
+.mapp{
+  width: 550px;
+  margin: 10px;
+}
+.san_address{
+  margin-top: 300px;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('./samples/head'); %>  
+</head>
+
+<body>
+    <header>
+        <%- include('./samples/header-x'); %>
+    </header> 
+    <h1><i>Типы путевок</i></h1>
+   
+    <div class="container-xm">
+        <div class="row">
+            <% for (let travel_type of travel ) {%>
+                <div class="card col-3 m-3" style="width: 25rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%=travel_type.name%></h5>
+                        <br>
+                        <h6 class="card-text"><b>Описание: </b><%=travel_type.description%></h5>
+                        <br>
+                        <h6 class="card-text"><b>Входят услуги: </b><%=travel_type.services%></h5>
+                        <br>
+                        <h6 class="card-text"><b>Стоимость: </b><%=travel_type.cost%>р.</h5>
+                        <a class="btn btn-success" href="reservation" type="button">Оформить</a>
+                    </div>
+                </div>
+            <% } %>
+    <script src="js/travel.js"></script>
+    <footer>
+        <%- include('./samples/footer'); %>
+    </footer>
+</body>
+</html>
